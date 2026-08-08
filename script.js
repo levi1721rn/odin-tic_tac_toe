@@ -324,3 +324,11 @@ function updateDisplay(player1_name , player2_name){
      })
 };
 
+const start_button = document.createElement('button');
+start_button.textContent = 'RESTART';
+document.body.append(start_button);
+start_button.addEventListener('click' , () => {
+
+    location.reload();
+    
+})
