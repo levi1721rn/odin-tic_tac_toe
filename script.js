@@ -8,6 +8,16 @@ const player = function(name , marker){
 const player1 = player('player1' , 'x');
 const player2 = player('player2' , 'o');
 
+const result = document.createElement('div');
+document.body.append(result);
+
+result.style.height = '75px';
+result.style.width = '200px';
+result.style.border = '2px solid black';
+result.style.margin = "3rem";
+result.style.padding = "1rem";
+result.style.color = "green";
+
 
 const box_zero = document.querySelector('.zero');
 const box_one = document.querySelector('.one');
@@ -38,7 +48,7 @@ const gameBoard = (() => {
                 array[3].textContent === player1.marker && array[4].textContent === player1.marker && array[5].textContent === player1.marker ||
                 array[6].textContent === player1.marker && array[7].textContent === player1.marker && array[8].textContent === player1.marker ){
                
-                    alert("Game Over. Player1 win!!");
+                    result.textContent = "Game Over. Player1 win!!";
 
                 }
             else if( array[0].textContent === player2.marker && array[1].textContent === player2.marker && array[2].textContent === player2.marker ||
@@ -50,11 +60,11 @@ const gameBoard = (() => {
                      array[3].textContent === player2.marker && array[4].textContent === player2.marker && array[5].textContent === player2.marker ||
                      array[6].textContent === player2.marker && array[7].textContent === player2.marker && array[8].textContent === player2.marker ){
                
-                    alert("Game Over. Player2 win!!");
+                    result.textContent = "Game Over. Player2 win!!";
 
                     }
             else if(array.every(item => item.textContent !== '')){
-                    alert('Game tied!!');
+                    result.textContent = 'Game tied!!';
                  
             }
 
@@ -300,5 +310,4 @@ const gameBoard = (() => {
         
      })
 })();
-
 
