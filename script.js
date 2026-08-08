@@ -5,8 +5,6 @@ const player = function(name , marker){
     };
 }
 
-const player1 = player('player1' , 'x');
-const player2 = player('player2' , 'o');
 
 const result = document.createElement('div');
 document.body.append(result);
@@ -15,8 +13,19 @@ result.style.height = '75px';
 result.style.width = '200px';
 result.style.border = '2px solid black';
 result.style.margin = "3rem";
-result.style.padding = "1rem";
+result.style.padding = "0.1rem";
 result.style.color = "green";
+
+const form = document.querySelector("form");
+const player_one = document.querySelector("#player1");
+const player_two = document.querySelector("#player2");
+
+form.addEventListener('submit',(event) => {
+    event.preventDefault();
+
+    updateDisplay(player_one.value , player_two.value);
+    
+})
 
 
 const box_zero = document.querySelector('.zero');
@@ -32,7 +41,14 @@ const box_eight = document.querySelector('.eight');
 const array = [box_zero,box_one,box_two,box_three,box_four,box_five,box_six,box_seven,box_eight];
 
 
-const gameBoard = (() => {
+
+
+function updateDisplay(player1_name , player2_name){
+
+    const player1 = player(player1_name , 'x');
+    const player2 = player(player2_name , 'o');
+
+    const gameBoard = (() => {
 
    /*0 1 2
      3 4 5
@@ -48,7 +64,7 @@ const gameBoard = (() => {
                 array[3].textContent === player1.marker && array[4].textContent === player1.marker && array[5].textContent === player1.marker ||
                 array[6].textContent === player1.marker && array[7].textContent === player1.marker && array[8].textContent === player1.marker ){
                
-                    result.textContent = "Game Over. Player1 win!!";
+                    result.textContent = `Game Over. ${player1.name} win!!`;
 
                 }
             else if( array[0].textContent === player2.marker && array[1].textContent === player2.marker && array[2].textContent === player2.marker ||
@@ -60,7 +76,7 @@ const gameBoard = (() => {
                      array[3].textContent === player2.marker && array[4].textContent === player2.marker && array[5].textContent === player2.marker ||
                      array[6].textContent === player2.marker && array[7].textContent === player2.marker && array[8].textContent === player2.marker ){
                
-                    result.textContent = "Game Over. Player2 win!!";
+                    result.textContent = `Game Over. ${player2.name} win!!`;
 
                     }
             else if(array.every(item => item.textContent !== '')){
@@ -72,10 +88,7 @@ const gameBoard = (() => {
    
     return {winCondition};
 
-})();
-
-
-(function updateDisplay(){
+    })();
 
     let current_player = player1;
 
@@ -309,5 +322,5 @@ const gameBoard = (() => {
     
         
      })
-})();
+};
 
